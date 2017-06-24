@@ -1,10 +1,12 @@
 extends KinematicBody2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var velocity = Vector2()
+export var GRAVITY = 200.0
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	set_fixed_process(true)
+
+func _fixed_process(delta):
+	velocity.y += GRAVITY * delta
+	var motion = velocity * delta
+	move(motion)
